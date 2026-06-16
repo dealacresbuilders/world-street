@@ -1,0 +1,45 @@
+name: Auto Sync to project repos
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Configure git
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "github-actions"
+
+      # Main Repo
+      - name: Sync to Residential Property Repo
+        continue-on-error: true
+        run: |
+          git remote remove mirror || true
+          git remote add mirror https://x-access-token:${{ secrets.faridabad_ACCESS_TOKEN }}@github.com/dealacresfaridabad/Residential-Property.git
+          git push mirror HEAD:main --force
+
+      # Frontend Repo
+      - name: Sync to faridabad Residential Property Frontend
+        continue-on-error: true
+        run: |
+          git remote remove frontend || true
+          git remote add frontend https://x-access-token:${{ secrets.faridabad_PROJECTS_ACCESS_TOKEN }}@github.com/mukeshkumar44/world-street-in-faridabad-frontend.git
+          git push frontend HEAD:main --force
+
+      # Nagori Gate Repo
+      # - name: Sync to Nagori Gate Residential Property
+      #   continue-on-error: true
+      #   run: |
+      #     git remote remove nagori || true
+      #     git remote add nagori https://x-access-token:${{ secrets.NAGORI_GATE_PROJECTS_ACCESS_TOKEN }}@github.com/dealacresnagorigate/residential-property.git
+      #     git push nagori HEAD:main --force
