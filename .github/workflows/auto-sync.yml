@@ -25,7 +25,7 @@ jobs:
         continue-on-error: true
         run: |
           git remote remove mirror || true
-          git remote add mirror https://x-access-token:${{ secrets.faridabad_ACCESS_TOKEN }}@github.com/dealacresfaridabad/Residential-Property.git
+          git remote add mirror https://x-access-token:${{ secrets.FARIDABAD_ACESS_TOKEN }}@github.com/dealacresfaridabad/Residential-Property.git
           git push mirror HEAD:main --force
 
       # Frontend Repo
@@ -33,7 +33,7 @@ jobs:
         continue-on-error: true
         run: |
           git remote remove frontend || true
-          git remote add frontend https://x-access-token:${{ secrets.faridabad_PROJECTS_ACCESS_TOKEN }}@github.com/mukeshkumar44/world-street-in-faridabad-frontend.git
+          git remote add frontend https://x-access-token:${{ secrets.FARIDABAD_PROJECTS_ACCESS_TOKEN }}@github.com/mukeshkumar44/world-street-in-faridabad-frontend.git
           git push frontend HEAD:main --force
 
       # Nagori Gate Repo
