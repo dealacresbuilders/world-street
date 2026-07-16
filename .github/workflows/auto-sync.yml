@@ -33,7 +33,7 @@ jobs:
         continue-on-error: true
         run: |
           git remote remove faridabaddev || true
-          git remote add faridabaddev https://x-access-token:${{ secrets.FARIDABAD_DEV_ACCESS_TOKEN }}@github.com/dealacresfaridabadprojects-dev/world-street.git
+          git remote add faridabaddev https://x-access-token:${{ secrets.FARIDABAD_ACESS_TOKEN }}@github.com/dealacresfaridabad/world-street.git
           git push faridabaddev HEAD:main --force
       
 
